@@ -20,10 +20,10 @@ apt-get -y install vim
 notify "Copying over vimrc"
 cp ./vimrc ~/.vimrc
 
-notify "Copying over startup script and setting it to run on startup"
-cp ./startupscript.sh /etc/init.d/customstartup.sh
-chmod +x /etc/init.d/customstartup.sh
-update-rc.d customstartup.sh defaults 100
+#notify "Copying over startup script and setting it to run on startup"
+#cp ./startupscript.sh /etc/init.d/customstartup.sh
+#chmod +x /etc/init.d/customstartup.sh
+#update-rc.d customstartup.sh defaults 100
 
 notify "Copying over i3 setup file and i3 config file"
 cp ./i3status.conf ~/.i3status.conf
