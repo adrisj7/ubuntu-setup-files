@@ -158,3 +158,6 @@ bar {
 
 # Start wifi applet GUI thing on the toolbar
 exec --no-startup-id nm-applet --sm-disable
+
+# Set wallpaper
+exec --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/wallpaper.png

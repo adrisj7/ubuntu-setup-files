@@ -34,6 +34,11 @@ i3-msg reload
 i3-msg restart
 
 
+notify "Copying over wallpaper (Is this really necessary?"
+mkdir ~/Pictures/Wallpapers
+cp ./Wallpapers/wallpaper.png ~/Pictures/Wallpapers/wallpaper.png
+
+
 read -r -p  "Generate SSH Key? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 then
