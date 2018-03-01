@@ -25,18 +25,23 @@ cp ./vimrc ~/.vimrc
 #chmod +x /etc/init.d/customstartup.sh
 #update-rc.d customstartup.sh defaults 100
 
-notify "Copying over i3 setup file and i3 config file"
-cp ./i3status.conf ~/.i3status.conf
-cp ./i3config ~/.config/i3/config
+read -r -p  "Do you have i3 installed? [y/N] " response
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+    notify "Copying over i3 setup file and i3 config file"
+    cp ./i3status.conf ~/.i3status.conf
+    cp ./i3config ~/.config/i3/config
+    
+    notify "Refreshing/Restarting i3 to apply changes"
+    i3-msg reload
+    i3-msg restart
 
-notify "Refreshing/Restarting i3 to apply changes"
-i3-msg reload
-i3-msg restart
+    notify "Copying over wallpaper (Is this really necessary?"
+    mkdir ~/Pictures/Wallpapers
+    cp ./Wallpapers/wallpaper.png ~/Pictures/Wallpapers/wallpaper.png
 
+fi
 
-notify "Copying over wallpaper (Is this really necessary?"
-mkdir ~/Pictures/Wallpapers
-cp ./Wallpapers/wallpaper.png ~/Pictures/Wallpapers/wallpaper.png
 
 
 read -r -p  "Generate SSH Key? [y/N] " response
