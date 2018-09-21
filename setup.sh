@@ -30,7 +30,11 @@ if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 then
     notify "Copying over i3 setup file and i3 config file"
     cp ./i3status.conf ~/.i3status.conf
-    cp ./i3config ~/.config/i3/config
+    
+    #Entire i3config folder
+    cp ./i3config/* ~/.config/i3
+    # Old: Just the i3config
+    #cp ./i3config ~/.config/i3/config
     
     notify "Refreshing/Restarting i3 to apply changes"
     i3-msg reload
