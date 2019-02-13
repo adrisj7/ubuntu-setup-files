@@ -25,17 +25,24 @@ cp ./vimrc ~/.vimrc
 #chmod +x /etc/init.d/customstartup.sh
 #update-rc.d customstartup.sh defaults 100
 
+# Download vim-plug.
+# TODO: Current plugins aren't added in vimrc. Fix this!
+notify "Downloading vim-plug"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
 read -r -p  "Do you have i3 installed? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 then
     notify "Copying over i3 setup file and i3 config file"
     cp ./i3status.conf ~/.i3status.conf
-    
+
     #Entire i3config folder
     cp ./i3config/* ~/.config/i3
     # Old: Just the i3config
     #cp ./i3config ~/.config/i3/config
-    
+
     notify "Refreshing/Restarting i3 to apply changes"
     i3-msg reload
     i3-msg restart
@@ -47,12 +54,11 @@ then
 fi
 
 
-
 read -r -p  "Generate SSH Key? [y/N] " response
 if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
 then
-	notify "Generating SSH Keys"
-	echo "   Leave everything blank, including the password (unless you want security pshhh)"
+    notify "Generating SSH Keys"
+    echo "   Leave everything blank, including the password (unless you want security pshhh)"
 
     ssh-keygen -t rsa
 
