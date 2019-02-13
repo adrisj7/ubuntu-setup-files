@@ -20,6 +20,9 @@ apt-get -y install vim
 notify "Copying over vimrc"
 cp ./vimrc ~/.vimrc
 
+notify "Copying over bash aliases"
+cp ./bash_aliases ~/.bash_aliases
+
 #notify "Copying over startup script and setting it to run on startup"
 #cp ./startupscript.sh /etc/init.d/customstartup.sh
 #chmod +x /etc/init.d/customstartup.sh
