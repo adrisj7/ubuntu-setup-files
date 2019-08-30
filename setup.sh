@@ -14,7 +14,7 @@ git config --global user.name "Adris"
 git config --global push.default simple
 
 
-notify "Installing stuff"
+notify "Installing basic stuff"
 apt-get -y install vim
 
 notify "Copying over vimrc"
@@ -33,6 +33,21 @@ cp ./bash_aliases ~/.bash_aliases
 notify "Downloading vim-plug"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+read -r -p "Install clang? (makes vim clang-complete good, takes a while though)"
+if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]
+then
+    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+    apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main"
+    apt-get update
+    apt-get install -y clang-6.0
+    # Deal with libclang extra .1 file, making a copy
+    sudo cp /usr/lib/llvm-6.0/lib/libclang.so.1 /usr/lib/llvm-6.0/lib/libclang.so
+fi
+
+
+notify "Installing vim plugins"
+vim +VimEnter +PlugInstall +qall
 
 
 read -r -p  "Do you have i3 installed? [y/N] " response
